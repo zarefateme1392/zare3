@@ -1,0 +1,16 @@
+{% extends "blog/parent/base.html" %}
+{% block title %} detail {% endblock %}
+{% block head %}{% endblock %}
+{% block content %}
+<h2>{{post.title}}:{{post.auther}}</h2>
+<p>
+    {{post.body|linebreaks|truncatewords:5}}
+</p>
+<p>
+    {{post.publish}}
+</p>
+
+<a href="{% url "blog:share_post" post.id %}">
+اشتراک گذاری پست
+</a>
+{% endblock %}

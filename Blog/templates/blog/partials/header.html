@@ -1,0 +1,32 @@
+<div style="margin:auto;width:200px;">
+<a href="{% url 'blog:index' %}"><h1>صفحه اصلی</h1></a>
+</div>
+
+{% if request.user.is_authenticated %}
+<div style="margin:auto;width:200px;">
+    <p> <h1>سلام</h1> </p>
+<p> <h1>{{request.user}}</h1> </p>
+</div>
+<div style="margin:auto;width:200px;">
+<a href="{% url 'blog:logout'%}"><h1>خروج</h1></a>
+</div>
+
+<div style="margin:auto;width:200px;" id="topic">
+<a href="{% url 'blog:change_password' %}"><h1> تغییر پسورد</h1></a>
+</div>
+<div style="margin:auto;width:200px;">
+    <a href="{% url 'predict:predict' %}"><p><h1>چکاپ</h1></p></a>
+</div>
+{% else %}
+<div style="margin:auto;width:200px;">
+<a href="{% url 'blog:signup' %}"> <h1>ثبت نام</h1></a>
+</div>
+<div style="margin:auto;width:200px;">
+<a href="{% url 'blog:login' %}"><h1>ورود</h1></a>
+</div>
+{% endif %}
+
+<div style="margin:auto;width:200px;">
+<a href="{% url 'blog:contact_us' %}"><h1>ارتباط با ما</h1></a>
+</div>
+

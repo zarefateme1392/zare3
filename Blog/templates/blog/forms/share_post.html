@@ -1,0 +1,44 @@
+{% extends "blog/parent/base.html" %}
+{% load static %}
+{% block title %} اشتراک گذاری پست {% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<h1 style="direction : rtl ;">صفحه اشتراک گذاری پست</h1>
+<p style="direction : rtl ;">
+    {% if sent %}
+    پیام {{post.title}} با موفقیت برای {{form.cleaned_data.to}} ارسال شد
+    {% endif %}
+</p>
+<form method="post" style="direction : rtl ;">
+    {% csrf_token %}
+    {{form.as_p}}
+    <br><br>
+    <input type="submit" value="اشتراک پست">
+</form>
+
+<a href="{% url "blog:post_detail" post.slug post.id %}">
+بازگشت
+</a>
+
+{% if form.errors %}
+لطفا خطاهای زیر را اصلاح کنید
+<br>
+    {% for field in form %}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                خطای1
+                <br>
+                {{field.label}}:{{error}}
+            {% endfor%}
+        {% endif %}
+    {% endfor%}
+    {% if form.non_field_errors %}
+        خطای 2
+        <br>
+        {{form.non_field_errors}}
+    {% endif %}
+{% endif %}
+
+{% endblock %}
+

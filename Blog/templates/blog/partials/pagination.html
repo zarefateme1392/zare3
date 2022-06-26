@@ -1,0 +1,22 @@
+<div>
+    <span>
+        {% if page.has_previous%}
+        <a href="?page={{page.previous_page_number}}">صفحه قبلی</a>
+        {% endif %}
+        <span>
+            Page{{page.number}} of {{page.paginator.num_pages}}
+        </span>
+
+        {% if page.has_next %}
+        <a href="?page={{page.next_page_number}}">صفحه بعدی</a>
+        {% endif %}
+    </span>
+    <br><br>
+    {% for i in page.paginator.page_range %}
+    {% if i == page.number %}
+    <span style="color:crimson">{{i}}</span>
+    {% else %}
+    {{i}}
+    {% endif %}
+    {% endfor %}
+</div>

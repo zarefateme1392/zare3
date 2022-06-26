@@ -1,0 +1,56 @@
+{% extends "blog/parent/base.html" %}
+{% load static %}
+{% block title %} تماس با ما {% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<h1 style="direction : rtl ;">صفحه تماس با ما</h1>
+<p style="direction : rtl ;">
+    {% if sent %}
+    پیام شما با موفقیت ارسال شد
+    {% endif %}
+</p>
+<form method="post" style="direction : rtl ;">
+    {% csrf_token%}
+    نام:
+    <input class="contact" type="text" name="name" required maxlength="25">
+    <br><br>
+    ایمیل:
+    <input type="email" name="email" required>
+    <br><br>
+    شماره تلفن:
+    <input type="text" name="phone" maxlength="11">
+    <br><br>
+    موضوع:
+    <select  name="subject" required>
+        <option value="انتقاد">انتقاد</option>
+        <option value="شکایات">شکایات</option>
+    </select>
+    <br><br>
+    متن پیام:
+    <textarea name="message" required></textarea>
+    <br><br>
+    <input type="submit" value="ارسال پیام">
+</form>
+
+{% if form.errors %}
+لطفا خطاهای زیر را اصلاح کنید
+<br>
+    {% for field in form %}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                خطای1
+                <br>
+                {{field.label}}:{{error}}
+            {% endfor%}
+        {% endif %}
+    {% endfor%}
+    {% if form.non_field_errors %}
+        خطای 2
+        <br>
+        {{form.non_field_errors}}
+    {% endif %}
+{% endif %}
+
+{% endblock %}
+

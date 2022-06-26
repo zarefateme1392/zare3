@@ -1,0 +1,74 @@
+{% extends "blog/parent/base.html" %}
+{% block content %}
+<h1 style="color:#007fff ; margin-left:auto"> فرم پیش بینی {{account.user.first_name}}</h1>
+<form method="post">
+    {% csrf_token %}
+    نام:
+    <input type="text" name="name" required {% if form.name.value %} value="{{form.name.value}}" {% else %} value="{{account.user.first_name|default:' '}}" {% endif %}>
+    <br><br>
+    نام خانوادگی:
+    <input type="text" name="last_name" required {% if form.last_name.value %} value="{{form.last_name.value}}" {% else %} value="{{account.user.last_name|default:''}}" {% endif %}>
+    <br><br>
+    تست199:
+    <input type="number" name="Test199" required>
+     <br>
+    <br>
+    تست220:
+    <input type="number" name="Test220" required>
+     <br>
+    <br>
+    تست215:
+    <input type="number" name="Test215" required>
+     <br>
+    <br>
+    تست14:
+    <input type="number" name="Test14" required>
+     <br>
+    <br>
+    تست20:
+    <input type="number" name="Test20" required>
+     <br>
+    <br>
+    تست22:
+    <input type="number" name="Test22" required>
+ <br>
+    <br>
+    تست55:
+    <input type="number" name="Test55" required>
+     <br>
+    <br>
+    تست1: محدوه سن شما کدام گزینه است 1)20تا29   2)30تا39   3)40تا49    4) 50تا59    5) 60تا69:
+    <input type="number" name="Test1" required>
+     <br>
+    <br>
+    تست54:
+     <input type="number" name="Test54" required>
+    <br>
+    <br>
+    تست57:
+    <input type="number" name="Test57" required >
+    <br>
+    <br>
+
+    <input type="submit" value="ثبت">
+</form>
+{% if form.errors %}
+لطفا خطاهای زیر را اصلاح کنید
+<br>
+    {% for field in form %}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                خطای1
+                <br>
+                {{field.label}}:{{error}}
+            {% endfor%}
+        {% endif %}
+    {% endfor%}
+    {% if form.non_field_errors %}
+        خطای 2
+        <br>
+        {{form.non_field_errors}}
+    {% endif %}
+{% endif %}
+
+{%  endblock %}

@@ -1,0 +1,39 @@
+{% extends "blog/parent/base.html" %}
+{% load static %}
+{% block title %} ورود به وبسایت {% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<form method="post">
+    نام کاربری:
+    <br>
+    <input type="text" name="username">
+    <br>
+    پسورد:
+    <br>
+    <input type="text" name="password">
+    <br><br>
+    <input type="submit" value="ورود به وبسایت">
+    {% csrf_token%}
+</form>
+
+{% if form.errors %}
+لطفا خطاهای زیر را اصلاح کنید
+<br>
+    {% for field in form %}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                خطای1
+                <br>
+                {{field.label}}:{{error}}
+            {% endfor%}
+        {% endif %}
+    {% endfor%}
+    {% if form.non_field_errors %}
+        خطای 2
+        <br>
+        {{form.non_field_errors}}
+    {% endif %}
+{% endif %}
+
+{% endblock%}
